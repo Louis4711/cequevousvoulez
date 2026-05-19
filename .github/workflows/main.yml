@@ -1,0 +1,20 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    run-on: windows-lastest
+    steps:
+      - name: récupérer le code
+        uses: actions/checkout@v4
+      - name: installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: installer les dépendences
+        run: npm install
+      - name: lancer les test
+        run: npm run build
